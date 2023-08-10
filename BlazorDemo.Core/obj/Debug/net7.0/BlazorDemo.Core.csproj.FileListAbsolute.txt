@@ -10,3 +10,15 @@ C:\Users\Oliver\source\repos\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorD
 C:\Users\Oliver\source\repos\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\refint\BlazorDemo.Core.dll
 C:\Users\Oliver\source\repos\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.pdb
 C:\Users\Oliver\source\repos\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\ref\BlazorDemo.Core.dll
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\bin\Debug\net7.0\BlazorDemo.Core.deps.json
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\bin\Debug\net7.0\BlazorDemo.Core.dll
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\bin\Debug\net7.0\BlazorDemo.Core.pdb
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.csproj.AssemblyReference.cache
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.AssemblyInfoInputs.cache
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.AssemblyInfo.cs
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.csproj.CoreCompileInputs.cache
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.dll
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\refint\BlazorDemo.Core.dll
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\BlazorDemo.Core.pdb
+C:\Users\Oliver\Source\Repos\CaveRock\BlazorDemo\BlazorDemo.Core\obj\Debug\net7.0\ref\BlazorDemo.Core.dll

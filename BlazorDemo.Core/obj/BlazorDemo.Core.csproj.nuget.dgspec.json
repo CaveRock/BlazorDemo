@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Oliver\\source\\repos\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj": {}
+    "C:\\Users\\Oliver\\Source\\Repos\\CaveRock\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Oliver\\source\\repos\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj": {
+    "C:\\Users\\Oliver\\Source\\Repos\\CaveRock\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Oliver\\source\\repos\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Oliver\\Source\\Repos\\CaveRock\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj",
         "projectName": "BlazorDemo.Core",
-        "projectPath": "C:\\Users\\Oliver\\source\\repos\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj",
+        "projectPath": "C:\\Users\\Oliver\\Source\\Repos\\CaveRock\\BlazorDemo\\BlazorDemo.Core\\BlazorDemo.Core.csproj",
         "packagesPath": "C:\\Users\\Oliver\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Oliver\\source\\repos\\BlazorDemo\\BlazorDemo.Core\\obj\\",
+        "outputPath": "C:\\Users\\Oliver\\Source\\Repos\\CaveRock\\BlazorDemo\\BlazorDemo.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Oliver\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,14 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.10, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -61,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
