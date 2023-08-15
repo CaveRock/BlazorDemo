@@ -18,7 +18,8 @@ namespace BlazorDemo.Core.Data {
             var optionsBuilder = new DbContextOptionsBuilder<BlazorDemoContext>();
 
             string connectionString = config.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(connectionString, x => x.MigrationsAssembly("AssetManagement.Core.Server"));
+            
+            optionsBuilder.UseSqlServer(connectionString, x => x.MigrationsAssembly("BlazorDemo.Core"));
             return new BlazorDemoContext(optionsBuilder.Options);
 
             
@@ -29,7 +30,7 @@ namespace BlazorDemo.Core.Data {
             var environmentName =
                       Environment.GetEnvironmentVariable(
                           "ASPNETCORE_ENVIRONMENT");
-
+            Console.WriteLine(environmentName);
             var dir = Directory.GetParent(AppContext.BaseDirectory);
 
             if (Environments.Development.Equals(environmentName,
@@ -42,6 +43,8 @@ namespace BlazorDemo.Core.Data {
                 dir = dir.Parent;
             }
             var path = dir.FullName;
+
+            Console.WriteLine(path);
 
             var builder = new ConfigurationBuilder()
                     .SetBasePath(path)
