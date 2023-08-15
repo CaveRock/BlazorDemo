@@ -13,8 +13,11 @@ namespace BlazorDemo.Core.Data {
 
         public BlazorDemoContext CreateDbContext(string[] args)
         {
+            var config = GetAppConfiguration();
+
             var optionsBuilder = new DbContextOptionsBuilder<BlazorDemoContext>();
-            string connectionString = "";
+
+            string connectionString = config.GetConnectionString("DefaultConnection");
             optionsBuilder.UseSqlServer(connectionString, x => x.MigrationsAssembly("AssetManagement.Core.Server"));
             return new BlazorDemoContext(optionsBuilder.Options);
 
