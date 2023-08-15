@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -12,7 +13,12 @@ namespace BlazorDemo.Core.Data {
 
         public BlazorDemoContext CreateDbContext(string[] args)
         {
-            throw new NotImplementedException();
+            var optionsBuilder = new DbContextOptionsBuilder<BlazorDemoContext>();
+            string connectionString = "";
+            optionsBuilder.UseSqlServer(connectionString, x => x.MigrationsAssembly("AssetManagement.Core.Server"));
+            return new BlazorDemoContext(optionsBuilder.Options);
+
+            
         }
 
         IConfiguration GetAppConfiguration()
