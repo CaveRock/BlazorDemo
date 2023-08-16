@@ -1,5 +1,6 @@
 ﻿using BlazorDemo.Core.Data.Entities.Identity;
 using BlazorDemo.Core.Interfaces.DataAccess;
+using BlazorDemo.Shared.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorDemo.Core.Services.Authentication {
-    public class RegisterUser {
+    public class AuthenticationService {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserDataAccessService _userDataAccess;
-        public RegisterUser(
+        public AuthenticationService(
             UserManager<ApplicationUser> userManager,
             IUserDataAccessService userDataAccess
             )
@@ -20,6 +21,10 @@ namespace BlazorDemo.Core.Services.Authentication {
             _userDataAccess = userDataAccess;
         }
 
+        public async Task<UserModel> RegisterUser(UserModel user, string password, string confirmPassword)
+        {
+            throw new NotImplementedException();
+        }
 
 
     }
