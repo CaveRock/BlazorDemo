@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDemo.Core.Data {
+namespace BlazorDemo.Core.Server.Data {
     public class BlazorDemoContextFactory : IDesignTimeDbContextFactory<BlazorDemoContext> {
 
         public BlazorDemoContext CreateDbContext(string[] args)

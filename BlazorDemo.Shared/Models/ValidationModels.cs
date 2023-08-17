@@ -5,6 +5,6 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDemo.Shared.Models {
+namespace BlazorDemo.Core.Shared.Models {
    
 }

@@ -1,6 +1,6 @@
 ﻿using BlazorDemo.Core.Data.Entities.Identity;
-using BlazorDemo.Core.Interfaces.DataAccess;
-using BlazorDemo.Shared.Models;
+using BlazorDemo.Core.Server.Interfaces.DataAccess;
+using BlazorDemo.Core.Shared.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDemo.Core.Services.Authentication {
+namespace BlazorDemo.Core.Server.Services.Authentication {
     public class AuthenticationService {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserDataAccessService _userDataAccess;

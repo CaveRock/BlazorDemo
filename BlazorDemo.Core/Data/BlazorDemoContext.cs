@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDemo.Core.Data {
+namespace BlazorDemo.Core.Server.Data {
     public partial class BlazorDemoContext : DbContext {
 
         public BlazorDemoContext(DbContextOptions<BlazorDemoContext> options) : base(options)

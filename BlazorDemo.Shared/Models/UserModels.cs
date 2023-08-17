@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDemo.Shared.Models {
+namespace BlazorDemo.Core.Shared.Models {
 
     public class UserId
     {
