@@ -29,7 +29,6 @@ namespace BlazorDemo.Core.Shared.Models {
 
         static Expression<Func<TResult>> ConvertExpression<TModel, TResult>(Expression<Func<TModel, TResult>> originalExpression)
         {
-            var parameter = Expression.Parameter(typeof(TModel), "x");
             var convertedBody = Expression.Convert(originalExpression.Body, typeof(TResult));
             var lambda = Expression.Lambda<Func<TResult>>(convertedBody, originalExpression.Parameters);
             return lambda;
