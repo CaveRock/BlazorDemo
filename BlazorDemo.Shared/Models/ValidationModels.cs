@@ -11,12 +11,12 @@ namespace BlazorDemo.Core.Shared.Models {
         private readonly Expression<Func<T, object>> _fieldAccessor;
         public string ErrorMessage { get; private set; }
 
+        //An expression that can be used to determine which field on the entity the error is related to
         public Expression<Func<object>> ErrorField
         {
             get
             {
                 return ConvertExpression(_fieldAccessor);
-
             }
         }
 
@@ -25,7 +25,6 @@ namespace BlazorDemo.Core.Shared.Models {
             ErrorMessage = errorMessage;
             _fieldAccessor = fieldAccessor;
         }
-
 
         static Expression<Func<TResult>> ConvertExpression<TModel, TResult>(Expression<Func<TModel, TResult>> originalExpression)
         {
@@ -38,17 +37,24 @@ namespace BlazorDemo.Core.Shared.Models {
 
     public class ValidationResult<T>
     {
-        public List<ValidationFieldResult<T>> Errors { get; set; }
+        //Holds errors that pertain to the entity or action performed that are not related to a specific field
+        public List<string> EntityErrors { get; set; }
+
+        //Hold field specific errors
+        public List<ValidationFieldResult<T>> FieldErrors { get; set; }
+
         public bool IsValid
         {
             get
             {
-                return Errors.Any();
+                return FieldErrors.Any() || EntityErrors.Any();
             }
         }
+
         public ValidationResult()
         {
-            Errors = new List<ValidationFieldResult<T>>();
+            FieldErrors = new List<ValidationFieldResult<T>>();
+            EntityErrors = new List<string>();
         }
     }
 }
