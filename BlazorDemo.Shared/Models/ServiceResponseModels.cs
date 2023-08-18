@@ -11,8 +11,9 @@ namespace BlazorDemo.Core.Shared.Models {
         public ValidationResult<TActionEntity> ValidationResult { get; private set; }
         public ServiceActionResult(TActionEntity entity)
         {
-            ValidationResult = new ValidationResult<TActionEntity>();
+            ValidationResult = new ValidationResult<TActionEntity>(entity);
             Entity = entity;
+            
         }
 
         public void AddValidationResult(ValidationResult<TActionEntity> validationResult)

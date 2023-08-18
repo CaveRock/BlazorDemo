@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -20,6 +21,8 @@ namespace BlazorDemo.Core.Shared.Models {
             }
         }
 
+
+
         public ValidationFieldResult(string errorMessage, Expression<Func<T, object>> fieldAccessor)
         {
             ErrorMessage = errorMessage;
@@ -37,24 +40,39 @@ namespace BlazorDemo.Core.Shared.Models {
 
     public class ValidationResult<T>
     {
+        public T Entity { get; set; }
         //Holds errors that pertain to the entity or action performed that are not related to a specific field
         public List<string> EntityErrors { get; set; }
 
         //Hold field specific errors
-        public List<ValidationFieldResult<T>> FieldErrors { get; set; }
+        private List<ValidationFieldResult<T>> _fieldErrors;
+
+        public List<FieldIdentifier> FieldIdentifiers { 
+        get
+            {
+                var identifiers = new List<FieldIdentifier>();
+                foreach (var err in _fieldErrors)
+                {
+                    identifiers.Add(new FieldIdentifier(Entity, err.ErrorField.Name));
+                }
+                return identifiers;
+            }
+        }
 
         public bool IsValid
         {
             get
             {
-                return FieldErrors.Any() || EntityErrors.Any();
+                return FieldIdentifiers.Any() || EntityErrors.Any();
             }
         }
 
-        public ValidationResult()
+        public ValidationResult(T entity, List<ValidationFieldResult<T>> fieldErrors)
         {
-            FieldErrors = new List<ValidationFieldResult<T>>();
+            _fieldErrors = new List<ValidationFieldResult<T>>();
+            fieldErrors.AddRange(fieldErrors);
             EntityErrors = new List<string>();
+            Entity = entity;
         }
     }
 }

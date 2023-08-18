@@ -21,8 +21,10 @@ namespace BlazorDemo.Core.Server.Services.Authentication {
             _userDataAccess = userDataAccess;
         }
 
-        public async Task<UserModel> RegisterUser(UserModel user, string password, string confirmPassword)
+        public async Task<ServiceActionResult<UserModel>> RegisterUser(UserModel user, string password, string confirmPassword)
         {
+
+
             throw new NotImplementedException();
         }
 
