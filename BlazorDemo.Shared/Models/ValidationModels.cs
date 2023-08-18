@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BlazorDemo.Core.Shared.Models {
    public class ValidationFieldResult<T>
     {
-        private Expression<Func<T, object>> _fieldAccessor;
+        private readonly Expression<Func<T, object>> _fieldAccessor;
         public string ErrorMessage { get; private set; }
 
         public Expression<Func<object>> ErrorField
