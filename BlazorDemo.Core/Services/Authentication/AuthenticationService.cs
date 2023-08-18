@@ -23,7 +23,13 @@ namespace BlazorDemo.Core.Server.Services.Authentication {
 
         public async Task<ServiceActionResult<UserModel>> RegisterUser(UserModel user, string password, string confirmPassword)
         {
+            var serviceResult = new ServiceActionResult<UserModel>(user);
 
+            var validationResult = new ValidationResult<UserModel>(user);
+
+            validationResult.AddFieldError(x => x.FirstName, "Required");
+
+            serviceResult.AddValidationResult(validationResult);
 
             throw new NotImplementedException();
         }
