@@ -1,23 +1,24 @@
-﻿using BlazorDemo.Core.Server.Services.Authentication;
+﻿using BlazorDemo.API.Routes;
+using BlazorDemo.Core.Server.Services.Authentication;
 using BlazorDemo.Core.Shared.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorDemo.API.Controllers {
     
-    [Route("api/[controller]")]
+    [Route(ApiEndpoints.Authentication.AuthenticationController)]
     [ApiController]
-    public class RegisterController : ControllerBase {
+    public class AuthenticationController : ControllerBase {
         private readonly AuthenticationService _authenticationService;
 
-        public RegisterController(
+        public AuthenticationController(
             AuthenticationService authenticationService
             )
         {
             _authenticationService = authenticationService;
         }
 
-        [Route("")]
+        [Route(ApiEndpoints.Authentication.Register)]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterUserModel model)
         {

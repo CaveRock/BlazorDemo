@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.API", "BlazorDem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.Core.Shared", "BlazorDemo.Shared\BlazorDemo.Core.Shared.csproj", "{1A85F0A8-7074-407B-89CE-DB00D8809F76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo.UI.BlazorWASM", "BlazorDemo.UI.BlazorWASM\BlazorDemo.UI.BlazorWASM.csproj", "{864BD205-14D9-46B0-BA63-0E5F8F1B61E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.UI.BlazorWASM", "BlazorDemo.UI.BlazorWASM\BlazorDemo.UI.BlazorWASM.csproj", "{864BD205-14D9-46B0-BA63-0E5F8F1B61E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo.API.Routes", "BlazorDemo.API.Routes\BlazorDemo.API.Routes.csproj", "{3CBAA006-9B19-4FD6-BBA9-CE7C07D5ABC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{864BD205-14D9-46B0-BA63-0E5F8F1B61E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{864BD205-14D9-46B0-BA63-0E5F8F1B61E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{864BD205-14D9-46B0-BA63-0E5F8F1B61E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CBAA006-9B19-4FD6-BBA9-CE7C07D5ABC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CBAA006-9B19-4FD6-BBA9-CE7C07D5ABC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CBAA006-9B19-4FD6-BBA9-CE7C07D5ABC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CBAA006-9B19-4FD6-BBA9-CE7C07D5ABC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
