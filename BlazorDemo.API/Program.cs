@@ -1,5 +1,6 @@
 using BlazorDemo.Core.Data.Entities.Identity;
 using BlazorDemo.Core.Server.Data;
+using BlazorDemo.Core.Server.Interfaces.DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -73,6 +74,9 @@ builder.Services.AddAuthentication(options => {
         }
     };
 });
+
+builder.Services.AddScoped<ApplicationUser>();
+builder.Services.AddScoped<IUserDataAccessService, UserDataAccessService>();
 
 app.MapControllers();
 
