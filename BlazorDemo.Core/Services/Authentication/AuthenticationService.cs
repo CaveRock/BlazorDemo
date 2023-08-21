@@ -12,26 +12,36 @@ namespace BlazorDemo.Core.Server.Services.Authentication {
     public class AuthenticationService {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserDataAccessService _userDataAccess;
+        private readonly AuthenticationValidationService _validator;
         public AuthenticationService(
             UserManager<ApplicationUser> userManager,
-            IUserDataAccessService userDataAccess
+            IUserDataAccessService userDataAccess,
+            AuthenticationValidationService validator
             )
         {
             _userManager = userManager;
             _userDataAccess = userDataAccess;
+            _validator = validator;
         }
 
-        public async Task<ServiceActionResult<UserModel>> RegisterUser(UserModel user, string password, string confirmPassword)
+        public async Task<ServiceActionResult<RegisterUserModel>> RegisterUser(RegisterUserModel user)
         {
-            var serviceResult = new ServiceActionResult<UserModel>(user);
+            var serviceResult = new ServiceActionResult<RegisterUserModel>(user);
 
-            var validationResult = new ValidationResult<UserModel>(user);
 
-            validationResult.AddFieldError(x => x.FirstName, "Required");
+
+            var validationResult = await _validator.RegisterUser(user);
+
+            if (validationResult.IsValid)
+            {
+
+            }
+
+   
 
             serviceResult.AddValidationResult(validationResult);
 
-            throw new NotImplementedException();
+            return serviceResult;
         }
 
 

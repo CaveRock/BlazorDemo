@@ -1,43 +1,14 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorDemo.Core.Shared.Models {
-   public class ValidationFieldResult<T>
-    {
-        private readonly Expression<Func<T, object>> _fieldAccessor;
-        public string ErrorMessage { get; private set; }
-
-        //An expression that can be used to determine which field on the entity the error is related to
-        public Expression<Func<object>> ErrorField
-        {
-            get
-            {
-                return ConvertExpression(_fieldAccessor);
-            }
-        }
-
-        public ValidationFieldResult(Expression<Func<T, object>> fieldAccessor, string errorMessage)
-        {
-            ErrorMessage = errorMessage;
-            _fieldAccessor = fieldAccessor;
-        }
-
-        static Expression<Func<TResult>> ConvertExpression<TModel, TResult>(Expression<Func<TModel, TResult>> originalExpression)
-        {
-            var convertedBody = Expression.Convert(originalExpression.Body, typeof(TResult));
-            var lambda = Expression.Lambda<Func<TResult>>(convertedBody, originalExpression.Parameters);
-            return lambda;
-        }
-
-    }
-
-    public class ValidationError
-    {
+    public class ValidationError {
         public FieldIdentifier Field { get; private set; }
         public string ErrorMessage { get; private set; }
         public ValidationError(FieldIdentifier field, string errorMessage)
@@ -47,53 +18,80 @@ namespace BlazorDemo.Core.Shared.Models {
         }
     }
 
-    public class ValidationResult<T>
-    {
+    public class ServiceValidationResult<T> {
         public T Entity { get; private set; }
-        //Holds errors that pertain to the entity or action performed that are not related to a specific field
-        public List<string> EntityErrors { get; set; }
+        
+        private List<ValidationResult> _propertyValidationResults;
 
-        //Hold field specific errors
-        //Issues with serializing Expressions so we keep this private
-        private List<ValidationFieldResult<T>> _fieldErrors;
-
-        //We can serialize this structure so we have it public
-        public List<ValidationError> FieldErrors { 
-        get
+        public List<ValidationResult> PropertyValidationResults
+        {
+            get
             {
-                var errors =  new List<ValidationError>();
-                foreach (var err in _fieldErrors)
+                return _propertyValidationResults;
+            }
+        }
+
+        public List<ValidationError> FieldIdentifierValidationResults
+        {
+            get
+            {
+                List<ValidationError> errors = new List<ValidationError>();
+                foreach (var err in PropertyValidationResults)
                 {
-                    if (Entity != null && err.ErrorField.Name != null)
-                    {
-                        errors.Add(new ValidationError(new FieldIdentifier(Entity, err.ErrorField.Name), err.ErrorMessage));
-                    }
+                    FieldIdentifier id = new FieldIdentifier(Entity, err.MemberNames.First());
+                    errors.Add(new ValidationError(id, err.ErrorMessage));
                 }
                 return errors;
             }
         }
 
-        public void AddFieldError(Expression<Func<T, object>> fieldAccessor, string errorMessage)
+        public void AddEntityError(string errorMessage)
         {
-            if (_fieldErrors == null)
+            _propertyValidationResults.Add(new ValidationResult(errorMessage));
+        }
+
+        public void AddPropertyErrors(List<ValidationResult> validationResults)
+        {
+            foreach (var result in validationResults)
             {
-                _fieldErrors = new List<ValidationFieldResult<T>>();
+                AddPropertyError(result);
             }
-            _fieldErrors.Add(new ValidationFieldResult<T>(fieldAccessor, errorMessage));
+        }
+
+        public void AddPropertyError(ValidationResult validationResult)
+        {
+            _propertyValidationResults.Add(validationResult);
+        }
+
+        public void AddPropertyError(Expression<Func<T, object>> fieldAccessor, string errorMessage)
+        {
+            var expression = ConvertExpression(fieldAccessor);
+
+            List<string> memberNames = new List<string>();
+            memberNames.Add(expression.Name);
+            var err = new ValidationResult(errorMessage, memberNames);
+
+            _propertyValidationResults.Add(err);    
         }
 
         public bool IsValid
         {
             get
             {
-                return FieldErrors.Any() || EntityErrors.Any();
+                return _propertyValidationResults.Any();
             }
         }
 
-        public ValidationResult(T entity)
+        static Expression<Func<TResult>> ConvertExpression<TModel, TResult>(Expression<Func<TModel, TResult>> originalExpression)
         {
-            _fieldErrors = new List<ValidationFieldResult<T>>();
-            EntityErrors = new List<string>();
+            var convertedBody = Expression.Convert(originalExpression.Body, typeof(TResult));
+            var lambda = Expression.Lambda<Func<TResult>>(convertedBody, originalExpression.Parameters);
+            return lambda;
+        }
+
+        public ServiceValidationResult(T entity)
+        {
+            _propertyValidationResults = new List<ValidationResult>();
             Entity = entity;
         }
     }
