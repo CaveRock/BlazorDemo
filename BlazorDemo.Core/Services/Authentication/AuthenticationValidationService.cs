@@ -20,14 +20,14 @@ namespace BlazorDemo.Core.Server.Services.Authentication {
         public async Task<ServiceValidationResult<RegisterUserModel>> RegisterUser(RegisterUserModel user)
         {
 
-            var result = new ServiceValidationResult<RegisterUserModel>(user);
+            var result = new ServiceValidationResult<RegisterUserModel>();
 
             var validationResults = new List<ValidationResult>();
 
             ValidationContext ctx = new ValidationContext(user);
 
             //Attribute validation rules
-            if (!Validator.TryValidateObject(user.FirstName, ctx, validationResults))
+            if (!Validator.TryValidateObject(user, ctx, validationResults))
             {
                 result.AddPropertyErrors(validationResults);
                 //Return early 

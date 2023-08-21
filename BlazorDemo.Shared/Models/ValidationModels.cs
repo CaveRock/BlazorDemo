@@ -9,45 +9,23 @@ using System.Threading.Tasks;
 
 namespace BlazorDemo.Core.Shared.Models {
     public class ValidationError {
-        public FieldIdentifier Field { get; private set; }
+        public string PropertyName { get; private set; }
         public string ErrorMessage { get; private set; }
-        public ValidationError(FieldIdentifier field, string errorMessage)
+        public ValidationError(string propertyName, string errorMessage)
         {
-            Field = field;
+            PropertyName = propertyName;
             ErrorMessage = errorMessage;
         }
     }
 
     public class ServiceValidationResult<T> {
-        public T Entity { get; private set; }
-        
-        private List<ValidationResult> _propertyValidationResults;
 
-        public List<ValidationResult> PropertyValidationResults
-        {
-            get
-            {
-                return _propertyValidationResults;
-            }
-        }
 
-        public List<ValidationError> FieldIdentifierValidationResults
-        {
-            get
-            {
-                List<ValidationError> errors = new List<ValidationError>();
-                foreach (var err in PropertyValidationResults)
-                {
-                    FieldIdentifier id = new FieldIdentifier(Entity, err.MemberNames.First());
-                    errors.Add(new ValidationError(id, err.ErrorMessage));
-                }
-                return errors;
-            }
-        }
+        public List<ValidationError> ValidationErrors { get; private set; } 
 
         public void AddEntityError(string errorMessage)
         {
-            _propertyValidationResults.Add(new ValidationResult(errorMessage));
+            ValidationErrors.Add(new ValidationError("", errorMessage));
         }
 
         public void AddPropertyErrors(List<ValidationResult> validationResults)
@@ -60,39 +38,31 @@ namespace BlazorDemo.Core.Shared.Models {
 
         public void AddPropertyError(ValidationResult validationResult)
         {
-            _propertyValidationResults.Add(validationResult);
+            string memberName = string.Empty;
+            if (validationResult.MemberNames.Any())
+            {
+                memberName = validationResult.MemberNames.First();
+            }
+            ValidationErrors.Add(new ValidationError(memberName, validationResult.ErrorMessage));
         }
 
         public void AddPropertyError(Expression<Func<T, object>> fieldAccessor, string errorMessage)
         {
-            var expression = ConvertExpression(fieldAccessor);
-
-            List<string> memberNames = new List<string>();
-            memberNames.Add(expression.Name);
-            var err = new ValidationResult(errorMessage, memberNames);
-
-            _propertyValidationResults.Add(err);    
+            var memberExpression = fieldAccessor.Body as MemberExpression;
+            ValidationErrors.Add(new ValidationError(memberExpression.Member.Name, errorMessage));
         }
 
         public bool IsValid
         {
             get
             {
-                return _propertyValidationResults.Any();
+                return !ValidationErrors.Any();
             }
         }
 
-        static Expression<Func<TResult>> ConvertExpression<TModel, TResult>(Expression<Func<TModel, TResult>> originalExpression)
+        public ServiceValidationResult()
         {
-            var convertedBody = Expression.Convert(originalExpression.Body, typeof(TResult));
-            var lambda = Expression.Lambda<Func<TResult>>(convertedBody, originalExpression.Parameters);
-            return lambda;
-        }
-
-        public ServiceValidationResult(T entity)
-        {
-            _propertyValidationResults = new List<ValidationResult>();
-            Entity = entity;
+            ValidationErrors = new List<ValidationError>();
         }
     }
 }

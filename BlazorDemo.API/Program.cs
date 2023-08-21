@@ -1,6 +1,7 @@
 using BlazorDemo.Core.Data.Entities.Identity;
 using BlazorDemo.Core.Server.Data;
 using BlazorDemo.Core.Server.Interfaces.DataAccess;
+using BlazorDemo.Core.Server.Services.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -68,6 +69,8 @@ builder.Services.AddAuthentication(options => {
 
 builder.Services.AddScoped<ApplicationUser>();
 builder.Services.AddScoped<IUserDataAccessService, UserDataAccessService>();
+builder.Services.AddScoped<AuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<AuthenticationValidationService, AuthenticationValidationService>();
 
 var app = builder.Build();
 
