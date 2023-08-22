@@ -10,26 +10,26 @@ namespace BlazorDemo.Core.Shared.Models {
 
         [Required]
         [EmailAddress]
-        public required string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
         
         [Required]
         [StringLength(25, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public required string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public required string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; } = string.Empty;
 
         [Required]
         [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [Required]
         [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
     }
 }
