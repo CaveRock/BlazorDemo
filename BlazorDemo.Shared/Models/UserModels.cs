@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorDemo.Core.Shared.Models {
 
-    public class UserId
-    {
+    public class UserId : IFormattable {
         public Guid Value { get; }
 
         public UserId(Guid value)
@@ -17,8 +16,12 @@ namespace BlazorDemo.Core.Shared.Models {
 
         public static UserId New() => new UserId(Guid.NewGuid());
 
+        public static UserId FromGuidAsString(string id) => new UserId(Guid.Parse(id));
 
-
+        public string ToString(string? format, IFormatProvider? formatProvider)
+        {
+            return Value.ToString(format, formatProvider);
+        }
     }
     public class UserModel {
         public UserId UserId { get; set; }
