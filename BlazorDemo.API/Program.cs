@@ -70,7 +70,6 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddScoped<ApplicationUser>();
 builder.Services.AddScoped<IUserDataAccessService, UserDataAccessService>();
 builder.Services.AddScoped<AuthenticationService>();
-//builder.Services.AddScoped<AuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<AuthenticationValidationService, AuthenticationValidationService>();
 
 var app = builder.Build();
