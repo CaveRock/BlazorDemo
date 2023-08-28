@@ -80,7 +80,7 @@ namespace BlazorDemo.Core.Server.Services.Authentication {
                 }
             }
 
-            serviceResult.AddValidationResult(validationResult);
+            serviceResult.SetValidationResult(validationResult);
 
             return serviceResult;
         }

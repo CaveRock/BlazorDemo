@@ -1,5 +1,8 @@
 ﻿@page "/register"
 @using BlazorDemo.Core.Shared.Models;
+@using BlazorDemo.UI.BlazorWASM.Code;
+@inject DemoApp App
+@inject NavigationManager Navigation;
 
 <PageTitle>Register</PageTitle>
 
@@ -28,12 +31,13 @@
 
 @code {
     private EditContext EC { get; set; }
-    
+    private ValidationMessageStore validationMessageStore;
     private RegisterUserModel RegisterModel { get; set; } = new RegisterUserModel();
 
     protected override async Task OnInitializedAsync()
     {
         EC = new EditContext(RegisterModel);
+        validationMessageStore = new ValidationMessageStore(EC);
         this.StateHasChanged();
     }
 
@@ -41,7 +45,19 @@
     {
         if (EC.Validate())
         {
-            
+            var result = await App.Authentication.Register(RegisterModel);
+
+            if (result.Succeeded)
+            {
+                Navigation.NavigateTo("/register/complete");
+            } else
+            {
+                foreach (var err in result.ValidationResult.ValidationErrors)
+                {
+                    var fieldError = new FieldIdentifier(RegisterModel, err.PropertyName);
+                    validationMessageStore.Add(fieldError, err.ErrorMessage);
+                }
+            }
         }
     }
 }

@@ -9,12 +9,21 @@ namespace BlazorDemo.Core.Shared.Models {
         public TActionEntity Entity { get; set; }
 
         public ServiceValidationResult<TActionEntity> ValidationResult { get; private set; }
-        public ServiceActionResult(TActionEntity entity)
+        public bool Succeeded
         {
-            Entity = entity;   
+            get
+            {
+                return ValidationResult.IsValid;
+            }
         }
 
-        public void AddValidationResult(ServiceValidationResult<TActionEntity> validationResult)
+        public ServiceActionResult(TActionEntity entity)
+        {
+            Entity = entity;
+            ValidationResult = new ServiceValidationResult<TActionEntity>();
+        }
+
+        public void SetValidationResult(ServiceValidationResult<TActionEntity> validationResult)
         {
             ValidationResult = validationResult;
         }

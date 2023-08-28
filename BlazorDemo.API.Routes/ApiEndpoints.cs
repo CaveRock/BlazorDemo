@@ -6,7 +6,7 @@ namespace BlazorDemo.API.Routes {
         public class Authentication
         {
             public const string AuthenticationController = $"{ApiBase}authentication";
-            public const string Register = "register";
+            public const string Register = $"{AuthenticationController}/register";
         }
     }
 }

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.Core.Shared", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.UI.BlazorWASM", "BlazorDemo.UI.BlazorWASM\BlazorDemo.UI.BlazorWASM.csproj", "{864BD205-14D9-46B0-BA63-0E5F8F1B61E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo.API.Routes", "BlazorDemo.API.Routes\BlazorDemo.API.Routes.csproj", "{3CBAA006-9B19-4FD6-BBA9-CE7C07D5ABC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.API.Routes", "BlazorDemo.API.Routes\BlazorDemo.API.Routes.csproj", "{3CBAA006-9B19-4FD6-BBA9-CE7C07D5ABC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

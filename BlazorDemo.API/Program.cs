@@ -67,6 +67,7 @@ builder.Services.AddAuthentication(options => {
     };
 });
 
+
 builder.Services.AddScoped<ApplicationUser>();
 builder.Services.AddScoped<IUserDataAccessService, UserDataAccessService>();
 builder.Services.AddScoped<AuthenticationService>();
