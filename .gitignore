@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /BlazorDemo.Core/appsettings.Development.json
 /BlazorDemo.API/appsettings.Development.json
+/BlazorDemo.UI.BlazorWASM/appsettings.Development.json
