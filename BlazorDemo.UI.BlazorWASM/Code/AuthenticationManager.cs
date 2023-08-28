@@ -24,7 +24,7 @@ namespace BlazorDemo.UI.BlazorWASM.Code {
             {
                 string content = await httpResult.Content.ReadAsStringAsync();
 
-                serviceResult = JsonSerializer.Deserialize<ServiceActionResult<RegisterUserModel>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return JsonSerializer.Deserialize<ServiceActionResult<RegisterUserModel>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             } else
             {

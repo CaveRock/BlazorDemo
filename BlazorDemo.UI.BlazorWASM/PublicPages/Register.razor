@@ -9,18 +9,29 @@
 <h1>Register</h1>
 <EditForm EditContext="EC">
     <DataAnnotationsValidator />
+    <ValidationSummary />
+     <div class="mb-3">
+        <label for="firstname" class="form-label">First Name</label>
+        <InputText Id="firstname" class="form-control" AutoComplete="off" @bind-Value="@RegisterModel.FirstName"></InputText>
+        <ValidationMessage For="@(() => RegisterModel.FirstName)" />
+    </div>
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <label for="lastname" class="form-label">Last Name</label>
+        <InputText Id="lastname" class="form-control" AutoComplete="off" @bind-Value="@RegisterModel.LastName"></InputText>
+        <ValidationMessage For="@(() => RegisterModel.LastName)" />
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
         <InputText Id="email" class="form-control" AutoComplete="off" @bind-Value="@RegisterModel.Email"></InputText>
         <ValidationMessage For="@(() => RegisterModel.Email)" />
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <label for="password" class="form-label">Password</label>
         <InputText Id="password" class="form-control" type="password" AutoComplete="off" @bind-Value="@RegisterModel.Password"></InputText>
         <ValidationMessage For="@(() => RegisterModel.Password)" />
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+        <label for="confirm-password" class="form-label">Confirm Password</label>
         <InputText Id="confirm-password" class="form-control" AutoComplete="off" type="password" @bind-Value="@RegisterModel.ConfirmPassword"></InputText>
         <ValidationMessage For="@(() => RegisterModel.ConfirmPassword)" />
     </div>
@@ -49,7 +60,7 @@
 
             if (result.Succeeded)
             {
-                Navigation.NavigateTo("/register/complete");
+                //Navigation.NavigateTo("/register/complete");
             } else
             {
                 foreach (var err in result.ValidationResult.ValidationErrors)

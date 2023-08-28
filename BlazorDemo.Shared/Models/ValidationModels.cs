@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BlazorDemo.Core.Shared.Models {
@@ -20,7 +21,7 @@ namespace BlazorDemo.Core.Shared.Models {
 
     public class ServiceValidationResult<T> {
 
-
+        [JsonInclude]
         public List<ValidationError> ValidationErrors { get; private set; } 
 
         public void AddEntityError(string errorMessage)

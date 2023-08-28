@@ -73,7 +73,28 @@ builder.Services.AddScoped<IUserDataAccessService, UserDataAccessService>();
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<AuthenticationValidationService, AuthenticationValidationService>();
 
+builder.Services.AddCors(policy => {
+    policy.AddPolicy("_myAllowSpecificOrigins", builder =>
+     builder.WithOrigins("http://localhost:7264/")
+      .SetIsOriginAllowed((host) => true) // this for using localhost address
+      .AllowAnyMethod()
+      .AllowAnyHeader()
+      .AllowCredentials());
+});
+//
+
+
+//builder.Services.AddCors(policy => {
+//    policy.AddPolicy("_myAllowSpecificOrigins", builder => builder.WithOrigins("https://localhost:7264/")
+//         .AllowAnyMethod()
+//         .AllowAnyHeader()
+//         .AllowCredentials());
+//});
+
 var app = builder.Build();
+
+app.UseCors("_myAllowSpecificOrigins");
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
