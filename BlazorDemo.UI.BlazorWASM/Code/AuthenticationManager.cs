@@ -1,4 +1,4 @@
-﻿using BlazorDemo.API.Routes;
+﻿using BlazorDemo.Core.Shared;
 using BlazorDemo.Core.Shared.Models;
 using System.Net.Http;
 using System.Net.Http.Json;

@@ -1,5 +1,5 @@
-﻿using BlazorDemo.API.Routes;
-using BlazorDemo.Core.Server.Services.Authentication;
+﻿using BlazorDemo.Core.Server.Services.Authentication;
+using BlazorDemo.Core.Shared;
 using BlazorDemo.Core.Shared.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
